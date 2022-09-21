@@ -9,6 +9,7 @@ faded gray:
 
  html{
     height: 100vh;
+    padding: 0;
  }
 
  body {
@@ -16,8 +17,32 @@ faded gray:
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #eee;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+ }
+
+ header {
+    display: flex;
+    height: 4rem;
+    background-color: #0E101D;
+    margin: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
  }
 
  h1, h2 {
     color: #2bd0da;
+    margin: 0;
  }
+
+ h1 {
+    font-size: 28px;
+ }
+
+ .test {
+    background-color: #142039;
+    width: 200px;
+    height: 200px;
+ }
+
