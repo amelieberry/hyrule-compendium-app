@@ -20,6 +20,7 @@ faded gray:
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #eee;
     font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.9px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
