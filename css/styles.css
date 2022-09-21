@@ -1,0 +1,23 @@
+/* 
+background: linear-gradient(to bottom (#15294A, #0E101D, #15294A))
+background black: #0E101D
+background blue: #15294A
+highlight blue: #2EFFFA
+faded blue: #26719B
+faded gray: 
+ */
+
+ html{
+    height: 100vh;
+ }
+
+ body {
+    min-height: 100%;
+    background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
+    color: #eee;
+    font-family: 'Roboto', sans-serif;
+ }
+
+ h1, h2 {
+    color: #2bd0da;
+ }
