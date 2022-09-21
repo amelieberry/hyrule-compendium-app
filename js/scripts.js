@@ -5,10 +5,19 @@ let pokemonList = [
     { name: 'Charmander', height: 0.6, types: ['fire'] }
 ];
 
-for (let i = 0; i < pokemonList.length; i++) {
-    const typeString = (pokemonList[i].types.length > 1) ? "types: " : "type: ";
+// for (let i = 0; i < pokemonList.length; i++) {
+//     const typeString = (pokemonList[i].types.length > 1) ? "types: " : "type: ";
+//     document.write('<div class="compendium-item">' 
+//     + "<h2>" + pokemonList[i].name + "</h2>"
+//     + '<p> height: ' + pokemonList[i].height + "</p>"
+//     + '<p>' + typeString + pokemonList[i].types.join(' and ') + '</p> </div>')
+// }
+
+pokemonList.forEach(function(item) {
+    const typeString = (item.types.length > 1) ? "types: " : "type: ";
     document.write('<div class="compendium-item">' 
-    + "<h2>" + pokemonList[i].name + "</h2>"
-    + '<p> height: ' + pokemonList[i].height + "</p>"
-    + '<p>' + typeString + pokemonList[i].types.join(' and ') + '</p> </div>')
-}
+    + "<h2>" + item.name + "</h2>"
+    + '<p> height: ' + item.height + "</p>"
+    + '<p>' + typeString + item.types.join(' and ') + '</p> </div>')
+});
+
