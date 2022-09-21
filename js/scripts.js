@@ -6,7 +6,6 @@ let pokemonList = [
 ];
 
 for (let i = 0; i < pokemonList.length; i++) {
-    const container = document.getElementById('compendium-container');
     const typeString = (pokemonList[i].types.length > 1) ? "types: " : "type: ";
     document.write('<div class="compendium-item">' + pokemonList[i].name + '<br>' + 'height: ' + pokemonList[i].height + '<br>' + typeString + pokemonList[i].types.join(' and ') + '<br><br>' + '</div>')
 }
