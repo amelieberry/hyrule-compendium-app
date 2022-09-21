@@ -7,5 +7,8 @@ let pokemonList = [
 
 for (let i = 0; i < pokemonList.length; i++) {
     const typeString = (pokemonList[i].types.length > 1) ? "types: " : "type: ";
-    document.write('<div class="compendium-item">' + pokemonList[i].name + '<br>' + 'height: ' + pokemonList[i].height + '<br>' + typeString + pokemonList[i].types.join(' and ') + '<br><br>' + '</div>')
+    document.write('<div class="compendium-item">' 
+    + "<h2>" + pokemonList[i].name + "</h2>"
+    + '<p> height: ' + pokemonList[i].height + "</p>"
+    + '<p>' + typeString + pokemonList[i].types.join(' and ') + '</p> </div>')
 }

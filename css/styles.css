@@ -20,6 +20,7 @@ faded gray:
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #eee;
     font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
     letter-spacing: 0.9px;
     display: flex;
     flex-wrap: wrap;
@@ -44,8 +45,13 @@ faded gray:
     font-size: 28px;
  }
 
+ h2 {
+    font-size: 22px;
+ }
+
  .compendium-item {
     display: flex;
+    flex-direction: column;
     background-color: #142039;
     width: 200px;
     height: 200px;
@@ -53,6 +59,7 @@ faded gray:
     align-items: center;
     justify-content: center;
     text-align: center;
+    padding: 3px;
  }
 
  .compendium-item:hover, .compendium-item:focus {
@@ -63,3 +70,8 @@ faded gray:
     border: 0;
  }
 
+ @media all and (max-width: 550px) {
+    .compendium-item {
+      margin: 4px;
+    }
+}
