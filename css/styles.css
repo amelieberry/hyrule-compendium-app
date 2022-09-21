@@ -20,6 +20,9 @@ faded gray:
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #eee;
     font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
  }
 
  header {
@@ -40,8 +43,13 @@ faded gray:
  }
 
  .compendium-item {
+    display: flex;
     background-color: #142039;
     width: 200px;
     height: 200px;
+    border: 1px solid #aaa;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
  }
 
