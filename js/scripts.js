@@ -13,8 +13,10 @@ let pokemonRepository = (function() {
 
     //add pokemon to array
     function add(item) {
+        //Is it an object?
         if (typeof item !== 'object') {
             console.log('Should be an object')
+            //Does it include expected keys?
         } else if (!('name' in item) || !('height' in item) || !('types' in item)) {
             console.log('Invalid keys');
         }else {
