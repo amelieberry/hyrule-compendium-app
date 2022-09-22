@@ -32,10 +32,11 @@ let pokemonRepository = (function() {
 
 // go through array of pokemons and write the values on document
 pokemonRepository.getAll().forEach(function(item) {
-    const typeString = (item.types.length > 1) ? "types: " : "type: ";
+    const typeString = (item.types.length > 1) ? 'types: ' : 'type: ';
+    const heightResult = (item.height > 1) ? ' Wow...that\'s big!' : '';
     document.write('<div class="compendium-item">' 
-    + "<h2>" + item.name + "</h2>"
-    + '<p> height: ' + item.height + "</p>"
+    + '<h2>' + item.name + '</h2>'
+    + '<p> height: ' + item.height + heightResult + '</p>'
     + '<p>' + typeString + item.types.join(' and ') + '</p> </div>')
 });
 
