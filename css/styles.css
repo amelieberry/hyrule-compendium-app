@@ -55,16 +55,16 @@ faded gray:
    width: 140px;
    border: 1px solid #aaa;
    padding: 2px;
-   margin: 2px;
+   margin: 8px 2px;
  }
 
  .compendium {
-   margin: auto;
+   margin: 0 auto;
    display: flex;
    flex-wrap: wrap;
    justify-content: space-around;
    align-items: center;
-   max-width: 700px;
+   max-width: 80%;
  }
 
  .compendium-list {
@@ -98,3 +98,9 @@ faded gray:
    -webkit-box-shadow: -1px 1px 6px 4px #26719B;
    box-shadow: -1px 1px 6px 4px #26719B;
  }
+
+ @media all and (max-width: 550px) {
+   .compendium {
+      min-width: 100%;
+   }
+}
