@@ -25,12 +25,6 @@ faded gray:
  }
 
  header {
-    display: flex;
-    height: 4rem;
-    background-color: #0E101D;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
     box-shadow: 0px 4px 9px #26719B;
  }
 
@@ -56,6 +50,21 @@ faded gray:
    border: 1px solid #aaa;
    padding: 2px;
    margin: 8px 2px;
+ }
+
+ footer {
+   position: absolute;
+   bottom: 0;
+   box-shadow: 0 -4px 9px  #26719B;
+ }
+
+ .banner {
+   display: flex;
+   height: 4rem;
+   background-color: #0E101D;
+   width: 100%;
+   align-items: center;
+   justify-content: center;
  }
 
  .compendium {
