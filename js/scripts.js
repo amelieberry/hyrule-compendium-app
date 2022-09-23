@@ -1,4 +1,4 @@
-let pokemonRepository = (function() {
+let pokemonRepository = (function () {
     let pokemonList = [
         { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
         { name: 'Ivysaur', height: 1, types: ['grass', 'poison'] },
@@ -16,36 +16,44 @@ let pokemonRepository = (function() {
         //Is it an object?
         if (typeof item !== 'object') {
             console.log('Should be an object')
-            //Does it include expected keys?
+        //Does it include expected keys?
         } else if (!('name' in item) || !('height' in item) || !('types' in item)) {
             console.log('Invalid keys');
         } else {
             pokemonList.push(item);
         }
     }
-
+    // create elements for displaying the compendium
     function addListItem(pokemon) {
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
+
         button.innerHTML = pokemon.name;
         button.classList.add('compendium-button');
         listItem.appendChild(button);
         compendiumList.appendChild(listItem);
+        clickEvent(button, pokemon);
+    }
+    // list pokemon details
+    function showDetails(pokemon) {
+        console.log(pokemon);
+    }
+    // triggers showDetails on click
+    function clickEvent(button, pokemon) {
+        button.addEventListener('click', function () { showDetails(pokemon) });
     }
 
     return {
         getAll: getAll,
         add: add,
-        addListItem: addListItem
+        addListItem: addListItem,
     }
 })();
 
-// go through array of pokemons and write the values on document
-// const pokemons = [{name: "poke", height: 1.1, types: ['water', 'fire']}];        
-// pokemons.forEach(pokemon => pokemonRepository.add(pokemon));
-pokemonRepository.add({name: "Poke", height: 1.1, types: ['water', 'fire']});
-pokemonRepository.getAll().forEach(function(pokemon) {
+pokemonRepository.add({ name: "Poke", height: 1.1, types: ['water', 'fire'] });
+// triggers addListItem on load for each pokemon object
+pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
 });
 
