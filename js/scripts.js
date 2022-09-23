@@ -19,7 +19,7 @@ let pokemonRepository = (function() {
             //Does it include expected keys?
         } else if (!('name' in item) || !('height' in item) || !('types' in item)) {
             console.log('Invalid keys');
-        }else {
+        } else {
             pokemonList.push(item);
         }
     }
@@ -32,11 +32,13 @@ let pokemonRepository = (function() {
 
 // go through array of pokemons and write the values on document
 pokemonRepository.getAll().forEach(function(item) {
-    const typeString = (item.types.length > 1) ? 'types: ' : 'type: ';
-    const heightResult = (item.height > 1) ? ' Wow...that\'s big!' : '';
-    document.write('<div class="compendium-item">' 
-    + '<h2>' + item.name + '</h2>'
-    + '<p> height: ' + item.height + heightResult + '</p>'
-    + '<p>' + typeString + item.types.join(' and ') + '</p> </div>')
+    let compendiumList = document.querySelector('.compendium-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerHTML = item.name;
+    button.classList.add('compendium-button');
+    listItem.appendChild(button);
+    compendiumList.appendChild(listItem);
+
 });
 
