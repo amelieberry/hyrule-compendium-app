@@ -31,6 +31,9 @@ let pokemonRepository = (function() {
 })();
 
 // go through array of pokemons and write the values on document
+// const pokemons = [{name: "poke", height: 1.1, types: ['water', 'fire']}];        
+// pokemons.forEach(pokemon => pokemonRepository.add(pokemon));
+pokemonRepository.add({name: "poke", height: 1.1, types: ['water', 'fire']})
 pokemonRepository.getAll().forEach(function(item) {
     let compendiumList = document.querySelector('.compendium-list');
     let listItem = document.createElement('li');
@@ -39,6 +42,6 @@ pokemonRepository.getAll().forEach(function(item) {
     button.classList.add('compendium-button');
     listItem.appendChild(button);
     compendiumList.appendChild(listItem);
-
 });
+
 
