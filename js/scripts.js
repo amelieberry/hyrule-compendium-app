@@ -24,24 +24,29 @@ let pokemonRepository = (function() {
         }
     }
 
+    function addListItem(pokemon) {
+        let compendiumList = document.querySelector('.compendium-list');
+        let listItem = document.createElement('li');
+        let button = document.createElement('button');
+        button.innerHTML = pokemon.name;
+        button.classList.add('compendium-button');
+        listItem.appendChild(button);
+        compendiumList.appendChild(listItem);
+    }
+
     return {
         getAll: getAll,
-        add: add
+        add: add,
+        addListItem: addListItem
     }
 })();
 
 // go through array of pokemons and write the values on document
 // const pokemons = [{name: "poke", height: 1.1, types: ['water', 'fire']}];        
 // pokemons.forEach(pokemon => pokemonRepository.add(pokemon));
-pokemonRepository.add({name: "poke", height: 1.1, types: ['water', 'fire']})
-pokemonRepository.getAll().forEach(function(item) {
-    let compendiumList = document.querySelector('.compendium-list');
-    let listItem = document.createElement('li');
-    let button = document.createElement('button');
-    button.innerHTML = item.name;
-    button.classList.add('compendium-button');
-    listItem.appendChild(button);
-    compendiumList.appendChild(listItem);
+pokemonRepository.add({name: "Poke", height: 1.1, types: ['water', 'fire']});
+pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon);
 });
 
 
