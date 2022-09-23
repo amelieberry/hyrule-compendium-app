@@ -22,9 +22,6 @@ faded gray:
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     letter-spacing: 0.9px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
  }
 
  header {
@@ -49,25 +46,57 @@ faded gray:
     font-size: 22px;
  }
 
- .compendium-item {
-    display: flex;
-    flex-direction: column;
-    background-color: #142039;
-    width: 200px;
-    height: 200px;
-    border: 1px solid #aaa;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 3px;
+ li {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   list-style-type: none;
+   height: 200px;
+   width: 200px;
+   border: 1px solid #aaa;
+   padding: 2px;
+   margin: 5px;
  }
 
- .compendium-item:hover, .compendium-item:focus {
+ .compendium {
+   margin: auto;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: center;
+   max-width: 700px;
+ }
+
+ .compendium-list {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   margin: 10px;
+ }
+
+ .compendium-button {
+   display: inline-block;
+   background-color: #142039;
+   width: 190px;
+   height: 190px;
+   text-align: center;
+   padding: 3px;
+   color: inherit;
+   font-family: inherit;
+   font-size: inherit;
+   border: none;
+ }
+
+ li:hover, li:focus {
     cursor: pointer;
-    -moz-box-shadow: -1px 1px 6px 4px #26719B;
-    -webkit-box-shadow: -1px 1px 6px 4px #26719B;
-    box-shadow: -1px 1px 6px 4px #26719B;
-    border: 0;
+    border: 1px solid #26719B;
+ }
+
+ li:hover .compendium-button, li:focus .compendium-button {
+   -moz-box-shadow: -1px 1px 6px 4px #26719B;
+   -webkit-box-shadow: -1px 1px 6px 4px #26719B;
+   box-shadow: -1px 1px 6px 4px #26719B;
  }
 
  @media all and (max-width: 550px) {
