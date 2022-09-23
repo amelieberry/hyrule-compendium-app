@@ -94,6 +94,7 @@ faded gray:
  }
 
  li:hover .compendium-button, li:focus .compendium-button {
+   cursor: pointer;
    -moz-box-shadow: -1px 1px 6px 4px #26719B;
    -webkit-box-shadow: -1px 1px 6px 4px #26719B;
    box-shadow: -1px 1px 6px 4px #26719B;
