@@ -83,15 +83,12 @@ let botwRepository = (function () {
 
     // fetch additional details for a specified entry
     function loadDetails(id) {
-        showLoadingMessage();
         const detailedApiUrl = apiUrl + "/entry/" + id;
         return fetch(detailedApiUrl).then(function (response) {
             return response.json();
         }).then(function (details) {
-            hideLoadingMessage();
             console.log(details.data)
         }).catch(function (e) {
-            hideLoadingMessage();
             console.error(e);
         })
     }
