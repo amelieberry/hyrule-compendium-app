@@ -24,8 +24,7 @@ let botwRepository = (function () {
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
-
-        button.innerHTML =`<img src=${entry.image}></img><p>${entry.id}</p><p>${entry.name}</p>`;
+        button.innerHTML =`<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
         button.classList.add('compendium-button');
         listItem.appendChild(button);
         compendiumList.appendChild(listItem);

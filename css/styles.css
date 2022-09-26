@@ -37,7 +37,9 @@ faded gray:
  }
 
  h2 {
-    font-size: 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1px;
  }
 
  li {
@@ -49,13 +51,18 @@ faded gray:
    width: 140px;
    border: 1px solid #aaa;
    padding: 2px;
-   margin: 8px 2px;
+   margin: 22px 2px;
  }
 
+ header {
+   top: 0;
+ }
+
+
  footer {
-   position: absolute;
    bottom: 0;
    box-shadow: 0 -4px 9px  #26719B;
+   margin-top: 20px;
  }
 
  .banner {
@@ -65,6 +72,7 @@ faded gray:
    width: 100%;
    align-items: center;
    justify-content: center;
+   position: stickyl
  }
 
  .compendium {
@@ -81,12 +89,12 @@ faded gray:
    flex-wrap: wrap;
    align-items: center;
    justify-content: center;
-   margin: 10px;
+   margin: 15px;
  }
 
  .compendium-button {
    display: inline-block;
-   background-color: #142039;
+   background: none;
    width: 135px;
    height: 135px;
    text-align: center;
@@ -97,16 +105,27 @@ faded gray:
    border: none;
  }
 
+ .compendium-button img {
+   height: 118px;
+   width: 118px;
+ }
+
+ .compendium-button p {
+   font-size: 0.8rem;
+   text-align: left;
+ }
+
  li:hover, li:focus {
     cursor: pointer;
     border: 1px solid #26719B;
+    -moz-box-shadow: -1px 1px 6px 4px #26719B;
+    -webkit-box-shadow: -1px 1px 6px 4px #26719B;
+    box-shadow: -1px 1px 6px 4px #26719B;
  }
 
  li:hover .compendium-button, li:focus .compendium-button {
    cursor: pointer;
-   -moz-box-shadow: -1px 1px 6px 4px #26719B;
-   -webkit-box-shadow: -1px 1px 6px 4px #26719B;
-   box-shadow: -1px 1px 6px 4px #26719B;
+
  }
 
  @media all and (max-width: 550px) {
