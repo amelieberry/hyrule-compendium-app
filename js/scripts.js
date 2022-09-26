@@ -1,60 +1,97 @@
-let pokemonRepository = (function () {
-    let pokemonList = [
-        { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
-        { name: 'Ivysaur', height: 1, types: ['grass', 'poison'] },
-        { name: 'Venusaur', height: 2, types: ['grass', 'poison'] },
-        { name: 'Charmander', height: 0.6, types: ['fire'] }
-    ];
+let botwRepository = (function () {
+    let hyruleCompendium = [];
+    let apiUrl = 'https://botw-compendium.herokuapp.com/api/v2';
 
-    // fetch pokemon array
+    // fetch entry array
     function getAll() {
-        return pokemonList;
+        return hyruleCompendium;
     };
 
-    //add pokemon to array
+    //add entry to array
     function add(item) {
         //Is it an object?
         if (typeof item !== 'object') {
             console.log('Should be an object')
-        //Does it include expected keys?
-        } else if (!('name' in item) || !('height' in item) || !('types' in item)) {
+            //Does it include expected keys?
+        } else if (!('name' in item) || !('image' in item) || !('id' in item)) {
             console.log('Invalid keys');
         } else {
-            pokemonList.push(item);
+            hyruleCompendium.push(item);
         }
     }
     // create elements for displaying the compendium
-    function addListItem(pokemon) {
+    function addListItem(entry) {
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
 
-        button.innerHTML = pokemon.name;
+        button.innerHTML =`<img src=${entry.image}></img><p>${entry.id}</p><p>${entry.name}</p>`;
         button.classList.add('compendium-button');
         listItem.appendChild(button);
         compendiumList.appendChild(listItem);
-        clickEvent(button, pokemon);
+        clickEvent(button, entry);
     }
-    // list pokemon details
-    function showDetails(pokemon) {
-        console.log(pokemon);
+    // list entry details
+    function showDetails(entry) {
+        loadDetails(entry.id);
     }
+
     // triggers showDetails on click
-    function clickEvent(button, pokemon) {
-        button.addEventListener('click', function () { showDetails(pokemon) });
+    function clickEvent(button, entry) {
+        button.addEventListener('click', function () { showDetails(entry) });
     }
+
+    // fetch data from API, add each specified entry to hyruleCompendium with add()
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (obj) {
+            const fetched = obj.data;
+            const equipment = fetched.equipment;
+            const materials = fetched.materials;
+            const monsters = fetched.monsters;
+            const treasure = fetched.treasure;
+            const foodCreatures = fetched.creatures.food;
+            const nonFoodCreatures = fetched.creatures.non_food;
+
+            const categories = [...equipment, ...materials, ...monsters, ...foodCreatures, ...nonFoodCreatures, ...treasure]
+            categories.sort((a, b) => a.id - b.id);
+            categories.forEach(category => {
+                add(category);
+            })
+        }).catch(function (e) {
+            console.error(e);
+        });
+    }
+
+    // fetch additional details for a specified entry
+    function loadDetails(id) {
+        const detailedApiUrl = apiUrl + "/entry/" + id;
+        return fetch(detailedApiUrl).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            console.log(details.data)
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+
 
     return {
         getAll: getAll,
         add: add,
         addListItem: addListItem,
+        loadList: loadList,
+        loadDetails: loadDetails
     }
 })();
 
-pokemonRepository.add({ name: "Poke", height: 1.1, types: ['water', 'fire'] });
-// triggers addListItem on load for each pokemon object
-pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+botwRepository.loadList().then(function () {
+    // triggers addListItem on load for each entry object
+    botwRepository.getAll().forEach(function (entry) {
+        botwRepository.addListItem(entry);
+    });
 });
 
 
