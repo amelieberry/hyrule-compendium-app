@@ -25,7 +25,8 @@ faded gray:
  }
 
  header {
-    box-shadow: 0px 4px 9px #26719B;
+    box-shadow: 0px 12px 9px rgb(38 113 155 / 50%);
+    top: 0;
  }
 
  h1, h2 {
@@ -39,7 +40,8 @@ faded gray:
  h2 {
     font-size: 1rem;
     font-weight: 500;
-    margin-top: 1px;
+    margin-top: 1.5px;
+    width: 134px;
  }
 
  li {
@@ -54,14 +56,9 @@ faded gray:
    margin: 22px 2px;
  }
 
- header {
-   top: 0;
- }
-
-
  footer {
    bottom: 0;
-   box-shadow: 0 -4px 9px  #26719B;
+   box-shadow: 0 -12px 9px rgb(38 113 155 / 50%);
    margin-top: 20px;
  }
 
@@ -72,7 +69,7 @@ faded gray:
    width: 100%;
    align-items: center;
    justify-content: center;
-   position: stickyl
+   position: sticky;
  }
 
  .compendium {
