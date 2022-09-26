@@ -40,11 +40,28 @@ let botwRepository = (function () {
         button.addEventListener('click', function () { showDetails(entry) });
     }
 
+    // create and append loading message
+    function showLoadingMessage() {
+        let compendiumList = document.querySelector('.compendium-list');
+        let loadingMessage = document.createElement('p');
+        loadingMessage.innerHTML = 'Loading, please wait';
+        loadingMessage.classList.add('loading-message');
+        compendiumList.appendChild(loadingMessage);
+    }
+
+    // hide loading message
+    function hideLoadingMessage() {
+        let compendiumList = document.querySelector('.compendium-list');
+        compendiumList.innerHTML = "";
+    }
+
     // fetch data from API, add each specified entry to hyruleCompendium with add()
     function loadList() {
+        showLoadingMessage();
         return fetch(apiUrl).then(function (response) {
             return response.json();
         }).then(function (obj) {
+            hideLoadingMessage();
             const fetched = obj.data;
             const equipment = fetched.equipment;
             const materials = fetched.materials;
@@ -53,24 +70,28 @@ let botwRepository = (function () {
             const foodCreatures = fetched.creatures.food;
             const nonFoodCreatures = fetched.creatures.non_food;
 
-            const categories = [...equipment, ...materials, ...monsters, ...foodCreatures, ...nonFoodCreatures, ...treasure]
+            const categories = [...equipment, ...materials, ...monsters, ...foodCreatures, ...nonFoodCreatures, ...treasure];
             categories.sort((a, b) => a.id - b.id);
             categories.forEach(category => {
                 add(category);
             })
         }).catch(function (e) {
+            hideLoadingMessage();
             console.error(e);
         });
     }
 
     // fetch additional details for a specified entry
     function loadDetails(id) {
+        showLoadingMessage();
         const detailedApiUrl = apiUrl + "/entry/" + id;
         return fetch(detailedApiUrl).then(function (response) {
             return response.json();
         }).then(function (details) {
+            hideLoadingMessage();
             console.log(details.data)
         }).catch(function (e) {
+            hideLoadingMessage();
             console.error(e);
         })
     }
@@ -82,7 +103,7 @@ let botwRepository = (function () {
         add: add,
         addListItem: addListItem,
         loadList: loadList,
-        loadDetails: loadDetails
+        loadDetails: loadDetails,
     }
 })();
 

@@ -72,6 +72,11 @@ faded gray:
    position: sticky;
  }
 
+ .loading-message {
+   height: 90vh;
+ }
+
+
  .compendium {
    margin: 0 auto;
    display: flex;
