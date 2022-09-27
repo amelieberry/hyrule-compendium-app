@@ -25,7 +25,7 @@ let botwRepository = (function () {
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
-        button.innerHTML =`<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
+        button.innerHTML = `<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
         button.classList.add('compendium-button');
 
         listItem.appendChild(button);
@@ -79,18 +79,14 @@ let botwRepository = (function () {
         const detailedApiUrl = apiUrl + "/entry/" + id;
         return fetch(detailedApiUrl).then(function (response) {
             return response.json();
-        }).then(function (details) {
-            console.log(details.data)
-        }).catch(function (e) {
-            console.error(e);
-        })
+        });
     }
 
-     // list entry details
-     function showDetails(entry) {
-        loadDetails(entry.id).then(function() {
+    // list entry details
+    function showDetails(entry) {
+        loadDetails(entry.id).then(function () {
             // first remove all content from modal container
-            modalContainer.innerHTML = '';
+
             //create modal
             let modal = document.createElement('div');
             modal.classList.add('modal');
@@ -132,6 +128,8 @@ let botwRepository = (function () {
 
             // make the modal visible
             modalContainer.classList.add('is-visible');
+        }).catch(function (e) {
+            console.error(e);
         });
     }
 
@@ -139,12 +137,13 @@ let botwRepository = (function () {
     modalContainer.addEventListener('click', (e) => {
         let target = e.target;
         if (target === modalContainer) {
-          hideModal();
+            hideModal();
         }
-      });
+    });
 
     function hideModal() {
         modalContainer.classList.remove('is-visible');
+        modalContainer.innerHTML = '';
     }
 
     // triggers showDetails on click
@@ -154,11 +153,11 @@ let botwRepository = (function () {
 
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-          hideModal();
+            hideModal();
         }
-      });
+    });
 
-    
+
     return {
         getAll: getAll,
         add: add,

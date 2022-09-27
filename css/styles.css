@@ -181,4 +181,11 @@ faded gray:
    .compendium {
       min-width: 100%;
    }
+   .modal {
+    max-width: 300px;
+   }
+   .modal-image {
+    height: 200px;
+    width: 200px;
+   }
 }
