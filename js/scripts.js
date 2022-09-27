@@ -1,6 +1,7 @@
 let botwRepository = (function () {
     let hyruleCompendium = [];
     let apiUrl = 'https://botw-compendium.herokuapp.com/api/v2';
+    let modalContainer = document.querySelector('#modal-container');
 
     // fetch entry array
     function getAll() {
@@ -26,18 +27,10 @@ let botwRepository = (function () {
         let button = document.createElement('button');
         button.innerHTML =`<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
         button.classList.add('compendium-button');
+
         listItem.appendChild(button);
         compendiumList.appendChild(listItem);
         clickEvent(button, entry);
-    }
-    // list entry details
-    function showDetails(entry) {
-        loadDetails(entry.id);
-    }
-
-    // triggers showDetails on click
-    function clickEvent(button, entry) {
-        button.addEventListener('click', function () { showDetails(entry) });
     }
 
     // create and append loading message
@@ -93,14 +86,77 @@ let botwRepository = (function () {
         })
     }
 
+     // list entry details
+     function showDetails(entry) {
+        loadDetails(entry.id).then(function() {
+            //create modal
+            let modal = document.createElement('div');
+            modal.classList.add('modal');
 
+            // create modal close button
+            let closeButton = document.createElement('button');
+            closeButton.classList.add('modal-close')
+            closeButton.innerText = 'X';
+            closeButton.addEventListener('click', hideModal);
 
+            // create modal title
+            let entryTitle = document.createElement('h1');
+            entryTitle.innerText = entry.id + ' ' + entry.name;
+
+            // add entry image to modal
+            let entryImage = document.createElement('img');
+            entryImage.classList.add('modal-image');
+            entryImage.alt = `An image of ${entry.name}`;
+            entryImage.src = entry.image;
+
+            // add Description of selected entry
+            let entryDescription = document.createElement('div');
+            entryDescription.innerHTML = `<h3>Description</h3><p>${entry.description}</p>`;
+
+            // add common locations
+            let entryLocations = document.createElement('div');
+            entryLocations.innerHTML = `<h3>Common Locations</h3><p>${entry.common_locations}</p>`;
+
+            //add other details that only appear on certain entries
+
+            // append all that stuff
+            modal.appendChild(closeButton);
+            modal.appendChild(entryTitle);
+            modal.appendChild(entryImage);
+            modal.appendChild(entryDescription);
+            modal.appendChild(entryLocations);
+            modalContainer.appendChild(modal);
+
+            // make the modal visible
+            modalContainer.classList.add('is-visible');
+        });
+    }
+
+    // close modal when modalContainer is targeted
+    modalContainer.addEventListener('click', (e) => {
+        let target = e.target;
+        if (target === modalContainer) {
+          hideModal();
+        }
+      });
+
+    function hideModal() {
+        modalContainer.classList.remove('is-visible');
+    }
+
+    // triggers showDetails on click
+    function clickEvent(button, entry) {
+        button.addEventListener('click', function () { showDetails(entry) });
+    }
+
+    
     return {
         getAll: getAll,
         add: add,
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails,
+        showDetails: showDetails
     }
 })();
 
