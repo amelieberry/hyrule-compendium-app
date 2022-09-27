@@ -29,7 +29,7 @@ faded gray:
     top: 0;
  }
 
- h1, h2 {
+ h1, h2, h3 {
     color: #2bd0da;
  }
 
@@ -129,6 +129,53 @@ faded gray:
    cursor: pointer;
 
  }
+
+ #modal-container {
+  display: none;
+ }
+
+ #modal-container.is-visible {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 999; 
+  overflow: auto; 
+  display: grid;
+  text-align: center;
+ }
+
+ .modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #0E101D;
+  padding: 10px;
+  width: 100%;
+  max-width: 700px;
+ }
+
+ .modal-close {
+  float: right;
+  font-size: 1.5rem;
+  color: #eee;
+  font-weight: 700;
+  background: none;
+  padding: 2px;
+  border: none;
+  text-shadow: 0 0 9px #26719B;
+ }
+
+ .modal-close:hover, .modal-close:focus {
+  cursor: pointer;
+  text-shadow: none;
+  color: #26719B;
+}
+
 
  @media all and (max-width: 550px) {
    .compendium {

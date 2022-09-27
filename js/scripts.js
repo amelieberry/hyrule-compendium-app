@@ -89,6 +89,8 @@ let botwRepository = (function () {
      // list entry details
      function showDetails(entry) {
         loadDetails(entry.id).then(function() {
+            // first remove all content from modal container
+            modalContainer.innerHTML = '';
             //create modal
             let modal = document.createElement('div');
             modal.classList.add('modal');
@@ -101,7 +103,8 @@ let botwRepository = (function () {
 
             // create modal title
             let entryTitle = document.createElement('h1');
-            entryTitle.innerText = entry.id + ' ' + entry.name;
+            let entryName = entry.name.toUpperCase();
+            entryTitle.innerText = entry.id + '.' + ' ' + entryName;
 
             // add entry image to modal
             let entryImage = document.createElement('img');
