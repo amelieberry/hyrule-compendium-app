@@ -152,6 +152,12 @@ let botwRepository = (function () {
         button.addEventListener('click', function () { showDetails(entry) });
     }
 
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+          hideModal();
+        }
+      });
+
     
     return {
         getAll: getAll,
