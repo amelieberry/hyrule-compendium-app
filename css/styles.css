@@ -72,6 +72,7 @@ faded gray:
    position: sticky;
    padding: 0 10px;
    overflow: auto;
+   flex-wrap: wrap;
  }
 
  .loading-message {
@@ -94,13 +95,18 @@ faded gray:
   border-bottom: 2px solid #2bd0da;
   color: inherit;
   margin-right: 5px;
+  outline: none;
  }
 
- .search-icon, .filter-icon {
+ .icons:hover, .icons:focus, .icons:active {
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px #2EFFFA);
+
+ }
+
+ .icons {
   fill: #2bd0da;
  }
-
-
 
  .compendium {
    margin: 0 auto;
@@ -215,5 +221,8 @@ faded gray:
    .modal-image {
     height: 200px;
     width: 200px;
+   }
+   .banner {
+    flex-wrap: wrap;
    }
 }
