@@ -18,7 +18,7 @@ faded gray:
  body {
     min-height: 100%;
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
-    color: #eee;
+    color: #addce2;
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     letter-spacing: 0.9px;
@@ -51,7 +51,7 @@ faded gray:
    list-style-type: none;
    height: 140px;
    width: 140px;
-   border: 1px solid #aaa;
+   border: 1px solid #addce2;
    padding: 2px;
    margin: 22px 2px;
  }
@@ -154,15 +154,18 @@ faded gray:
   display: inline-block;
   box-sizing: border-box;
   background: #0E101D;
+  border: 1px solid #addce2;
   padding: 10px;
   width: 100%;
   max-width: 700px;
+  font-family: inherit;
+  line-height: 1.4;
  }
 
  .modal-close {
   float: right;
   font-size: 1.5rem;
-  color: #eee;
+  color: #6bcad6;
   font-weight: 700;
   background: none;
   padding: 2px;
