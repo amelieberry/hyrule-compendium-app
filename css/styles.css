@@ -75,8 +75,8 @@ faded gray:
    flex-wrap: wrap;
  }
 
- .loading-message {
-   height: 90vh;
+ main {
+   min-height: calc(100vh - 8rem);
  }
 
  .menu-container, .search-container {
