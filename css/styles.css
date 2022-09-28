@@ -210,6 +210,10 @@ faded gray:
   color: #26719B;
 }
 
+.hide-item {
+  display: none !important;
+}
+
 
  @media all and (max-width: 550px) {
    .compendium {
@@ -223,6 +227,6 @@ faded gray:
     width: 200px;
    }
    .banner {
-    flex-wrap: wrap;
+    flex-wrap: column;
    }
 }
