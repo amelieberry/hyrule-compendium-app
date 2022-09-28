@@ -24,6 +24,7 @@ let botwRepository = (function () {
     function addListItem(entry) {
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
+        listItem.id = entry.id;
         let button = document.createElement('button');
         button.innerHTML = `<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
         button.classList.add('compendium-button');
@@ -157,6 +158,41 @@ let botwRepository = (function () {
         }
     });
 
+    // Search compendium by item name or ID
+    let searchValue = document.getElementById('searchBar');
+
+    searchValue.addEventListener('keyup', function (e) {
+        let searchString = e.target.value.toLowerCase();
+
+        let itemsToHide = hyruleCompendium.filter(function (item) {
+            // FIND ALL THE ITEMS THAT DO NOT CONTAIN SEARCH KEY IN EITHER NAME OR ID
+            if (!item.name.toLowerCase().includes(searchString) || !item.id.toString().includes(searchString)) {
+                return item
+            }
+        });
+        let itemsToShow = hyruleCompendium.filter(function (item) { 
+            // FIND ALL THE ITEMS THAT CONTAIN SEARCH KEY IN EITHER NAME OR ID
+            if (item.name.toLowerCase().includes(searchString) || item.id.toString().includes(searchString)) {
+                return item
+            }
+        });
+
+
+        itemsToShow.push(...hyruleCompendium.filter(function (item) {
+            return item.id.toString().includes(searchString);
+        }))
+
+        itemsToHide.map(item => {
+            document.getElementById(item.id).classList.add("hide-item");
+        });
+        itemsToShow.map(item => {
+            document.getElementById(item.id).classList.remove("hide-item");
+        })        
+    });
+
+
+    //filter compendium items by category
+
 
     return {
         getAll: getAll,
@@ -164,7 +200,7 @@ let botwRepository = (function () {
         addListItem: addListItem,
         loadList: loadList,
         loadDetails: loadDetails,
-        showDetails: showDetails
+        showDetails: showDetails,
     }
 })();
 
