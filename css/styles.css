@@ -34,7 +34,6 @@ faded gray:
  h1 {
     font-size: 1.5rem;
     margin: 0;
-    text-align: center;
  }
 
  h2 {
@@ -48,7 +47,6 @@ faded gray:
    display: flex;
    align-items: center;
    justify-content: center;
-   list-style-type: none;
    height: 140px;
    width: 140px;
    border: 1px solid #addce2;
@@ -57,7 +55,6 @@ faded gray:
  }
 
  footer {
-   bottom: 0;
    box-shadow: 0 -12px 9px rgb(38 113 155 / 50%);
  }
 
@@ -81,6 +78,7 @@ faded gray:
   background: none;
   border: none;
   border-bottom: 2px solid #2bd0da;
+  font-size: inherit;
   color: inherit;
   margin-right: 5px;
   outline: none;
@@ -113,7 +111,7 @@ faded gray:
    margin: 15px;
  }
 
- .button {
+ .filter-button {
   background: none;
   border: none;
  }
@@ -216,7 +214,12 @@ faded gray:
 }
 
 
+
+
  @media all and (max-width: 550px) {
+  h1 {
+    font-size: 1.1rem;
+  }
    .compendium {
       min-width: 100%;
    }
