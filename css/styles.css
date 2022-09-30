@@ -20,19 +20,20 @@ faded gray:
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #addce2;
     font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.9px;
+    letter-spacing: 0.7px;
  }
 
  .navbar {
     box-shadow: 0px 12px 9px rgb(38 113 155 / 50%);
+    padding: .5rem 0;
  }
 
- h1, h2, h3 {
+ h1, h2, h3, .dropdown-item-text {
     color: #2bd0da;
  }
 
  h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin: 0;
  }
 
@@ -41,17 +42,6 @@ faded gray:
     font-weight: 500;
     padding-top: 7px;
     width: 134px;
- }
-
- li {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 140px;
-   width: 140px;
-   border: 1px solid #addce2;
-   padding: 2px;
-   margin: 22px 2px;
  }
 
  footer {
@@ -84,18 +74,39 @@ faded gray:
   outline: none;
  }
 
+ .btn {
+  padding: .2rem;
+  color: #addce2;
+ }
+
  .btn.focus, .btn:focus {
   box-shadow: none;
  }
 
  .icons {
   fill: #2bd0da;
+  height: 20px;
+  width: 20px;
  }
 
  .icons:hover, .icons:focus, .icons:active {
   cursor: pointer;
   filter: drop-shadow(0 0 2px #2EFFFA);
 
+ }
+
+ .dropdown-menu {
+  background-color: #0E101D;
+  border: 1px solid #addce2;
+ }
+
+ .dropdown-item {
+  background: none;
+
+ }
+
+ .dropdown-item:focus, .dropdown-item:hover, .dropdown-item:active {
+  background: none;
  }
 
  .compendium {
@@ -114,6 +125,17 @@ faded gray:
    justify-content: center;
    margin: 15px;
  }
+
+ .compendium-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  width: 140px;
+  border: 1px solid #addce2;
+  padding: 2px;
+  margin: 22px 2px;
+}
 
  .compendium-button {
    display: inline-block;
@@ -151,11 +173,11 @@ faded gray:
     -moz-box-shadow: -1px 1px 6px 4px #26719B;
     -webkit-box-shadow: -1px 1px 6px 4px #26719B;
     box-shadow: -1px 1px 6px 4px #26719B;
+    background: none;
  }
 
  li:hover .compendium-button, li:focus .compendium-button {
    cursor: pointer;
-
  }
 
  #modal-container {
@@ -214,6 +236,11 @@ faded gray:
 
 
 
+@media all and (max-width: 750px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+}
 
  @media all and (max-width: 550px) {
   h1 {
@@ -233,3 +260,4 @@ faded gray:
     flex-wrap: column;
    }
 }
+
