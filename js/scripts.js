@@ -186,15 +186,20 @@ let botwRepository = (function () {
 
     //toggle search bar by pressing the search icon
     let searchButton = $('.search-button');
+    let pageTitle = $('.page-title');
     $(document).ready(function(){
-        $(searchButton).click(function(){
-          $(".search-bar").toggleClass('d-none');
+        $(searchButton).click(function() {
+            pageTitle.toggleClass('d-none d-md-block');
+            $('.search-bar').toggleClass('d-none');
+            
         });
       });
 
 
     //filter compendium items by category
-    let filterButton= $('.filter-button');
+    $('.dropdown').click(function(){
+        $('.dropdown-menu').toggleClass('show');
+      });
 
 
     return {
