@@ -84,14 +84,18 @@ faded gray:
   outline: none;
  }
 
- .icons:hover, .icons:focus, .icons:active {
-  cursor: pointer;
-  filter: drop-shadow(0 0 2px #2EFFFA);
-
+ .btn.focus, .btn:focus {
+  box-shadow: none;
  }
 
  .icons {
   fill: #2bd0da;
+ }
+
+ .icons:hover, .icons:focus, .icons:active {
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px #2EFFFA);
+
  }
 
  .compendium {
@@ -109,11 +113,6 @@ faded gray:
    align-items: center;
    justify-content: center;
    margin: 15px;
- }
-
- .filter-button {
-  background: none;
-  border: none;
  }
 
  .compendium-button {
