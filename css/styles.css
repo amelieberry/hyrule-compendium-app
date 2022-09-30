@@ -21,6 +21,9 @@ faded gray:
     color: #addce2;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.7px;
+    height: auto;
+    background-attachment: fixed;
+
  }
 
  .navbar {
@@ -79,8 +82,9 @@ faded gray:
   color: #addce2;
  }
 
- .btn.focus, .btn:focus {
+ .btn:focus, .btn:hover, .btn:active {
   box-shadow: none;
+  color: #addce2;
  }
 
  .icons {
@@ -200,7 +204,7 @@ faded gray:
   z-index: 9999;
  }
 
- .modal {
+ .custom-modal {
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
@@ -249,7 +253,7 @@ faded gray:
    .compendium {
       min-width: 100%;
    }
-   .modal {
+   .custom-modal {
     max-width: 300px;
    }
    .modal-image {
