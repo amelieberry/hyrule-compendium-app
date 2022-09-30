@@ -2,7 +2,7 @@ let botwRepository = (function () {
     let hyruleCompendium = [];
     let apiUrl = 'https://botw-compendium.herokuapp.com/api/v2';
     let modalContainer = document.querySelector('#modal-container');
-
+    const categories = [];
     // fetch entry array
     function getAll() {
         return hyruleCompendium;
@@ -57,16 +57,17 @@ let botwRepository = (function () {
         }).then(function (obj) {
             hideLoadingMessage();
             const fetched = obj.data;
-            const equipment = fetched.equipment;
-            const materials = fetched.materials;
-            const monsters = fetched.monsters;
-            const treasure = fetched.treasure;
-            const foodCreatures = fetched.creatures.food;
-            const nonFoodCreatures = fetched.creatures.non_food;
-
-            const categories = [...equipment, ...materials, ...monsters, ...foodCreatures, ...nonFoodCreatures, ...treasure];
-            categories.sort((a, b) => a.id - b.id);
-            categories.forEach(category => {
+            categories.push(...Object.keys(fetched));
+            const categoriesList = [...categories.map(category => {
+                if (category === "creatures") {
+                    return [...fetched[category].food, ...fetched[category].non_food]
+                } else {
+                    return fetched[category]
+                }
+            })]
+            const categoriesObject = categoriesList.flat();
+            categoriesObject.sort((a, b) => a.id - b.id);
+            categoriesObject.forEach(category => {
                 add(category);
             })
         }).catch(function (e) {
@@ -75,18 +76,8 @@ let botwRepository = (function () {
         });
     }
 
-    // fetch additional details for a specified entry
-    function loadDetails(id) {
-        const detailedApiUrl = apiUrl + "/entry/" + id;
-        return fetch(detailedApiUrl).then(function (response) {
-            return response.json();
-        });
-    }
-
     // list entry details
     function showDetails(entry) {
-        loadDetails(entry.id).then(function () {
-            // first remove all content from modal container
 
             //create modal
             let modal = document.createElement('div');
@@ -111,11 +102,17 @@ let botwRepository = (function () {
 
             // add Description of selected entry
             let entryDescription = document.createElement('div');
-            entryDescription.innerHTML = `<h3>Description</h3><p>${entry.description}</p>`;
+            entryDescription.innerHTML = `<h3>Description</h3><p class="text-center">${entry.description}</p>`;
 
             // add common locations
             let entryLocations = document.createElement('div');
-            entryLocations.innerHTML = `<h3>Common Locations</h3><p>${entry.common_locations}</p>`;
+            let locations = ''
+            if (entry.common_locations === null) {
+                locations = "Unknown";
+            } else {
+                locations = entry.common_locations.join(', ');
+            }
+            entryLocations.innerHTML = `<h3>Common Locations</h3><p class="text-center">${locations}</p>`;
 
             //add other details that only appear on certain entries
 
@@ -129,9 +126,6 @@ let botwRepository = (function () {
 
             // make the modal visible
             modalContainer.classList.add('is-visible');
-        }).catch(function (e) {
-            console.error(e);
-        });
     }
 
     // close modal when modalContainer is targeted
@@ -170,7 +164,7 @@ let botwRepository = (function () {
                 return item
             }
         });
-        let itemsToShow = hyruleCompendium.filter(function (item) { 
+        let itemsToShow = hyruleCompendium.filter(function (item) {
             // FIND ALL THE ITEMS THAT CONTAIN SEARCH KEY IN EITHER NAME OR ID
             if (item.name.toLowerCase().includes(searchString) || item.id.toString().includes(searchString)) {
                 return item
@@ -187,11 +181,20 @@ let botwRepository = (function () {
         });
         itemsToShow.map(item => {
             document.getElementById(item.id).classList.remove("hide-item");
-        })        
+        })
     });
+
+    //toggle search bar by pressing the search icon
+    let searchButton = $('.search-button');
+    $(document).ready(function(){
+        $(searchButton).click(function(){
+          $(".search-bar").toggleClass('d-none');
+        });
+      });
 
 
     //filter compendium items by category
+    let filterButton= $('.filter-button');
 
 
     return {
@@ -199,8 +202,8 @@ let botwRepository = (function () {
         add: add,
         addListItem: addListItem,
         loadList: loadList,
-        loadDetails: loadDetails,
         showDetails: showDetails,
+        categories: categories,
     }
 })();
 
