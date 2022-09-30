@@ -28,7 +28,6 @@ let botwRepository = (function () {
         let button = document.createElement('button');
         button.innerHTML = `<img src=${entry.image}></img><p>${entry.id}</p><h2>${entry.name}</h2>`;
         button.classList.add('compendium-button');
-
         listItem.appendChild(button);
         compendiumList.appendChild(listItem);
         clickEvent(button, entry);
@@ -58,6 +57,7 @@ let botwRepository = (function () {
             hideLoadingMessage();
             const fetched = obj.data;
             categories.push(...Object.keys(fetched));
+            loadCategories();
             const categoriesList = [...categories.map(category => {
                 if (category === "creatures") {
                     return [...fetched[category].food, ...fetched[category].non_food]
@@ -81,7 +81,7 @@ let botwRepository = (function () {
 
             //create modal
             let modal = document.createElement('div');
-            modal.classList.add('modal');
+            modal.classList.add('custom-modal');
 
             // create modal close button
             let closeButton = document.createElement('button');
@@ -184,7 +184,7 @@ let botwRepository = (function () {
         })
     });
 
-    //toggle search bar by pressing the search icon
+    //toggle search bar by pressing the search icon. Hide title if small screen
     let searchButton = $('.search-button');
     let pageTitle = $('.page-title');
     $(document).ready(function(){
@@ -195,11 +195,48 @@ let botwRepository = (function () {
         });
       });
 
-
-    //filter compendium items by category
+    // Toggle categories menu by pressing on filter icon
     $('.dropdown').click(function(){
         $('.dropdown-menu').toggleClass('show');
       });
+
+    function categoryFilter (category) {
+        let showFiltered = [];
+        let hideUnfiltered = [];
+        if (category === 'all') {
+            showFiltered = hyruleCompendium;
+        } else {
+            hideUnfiltered = hyruleCompendium.filter(function (item) {
+                // FIND ALL THE ITEMS THAT DO NOT CONTAIN SEARCH KEY
+                if (item.category !== category) {
+                    return item
+                }
+            });
+    
+            showFiltered = hyruleCompendium.filter(function (item) {
+                // FIND ALL THE ITEMS THAT CONTAIN SEARCH KEY 
+                if (item.category === category) {
+                    return item
+                }
+            });
+        }
+
+        hideUnfiltered.map(item => {
+            document.getElementById(item.id).classList.add("hide-item");
+        });
+        showFiltered.map(item => {
+            document.getElementById(item.id).classList.remove("hide-item");
+        })
+    }
+
+    function loadCategories () {
+        $('#category-dropdown').append(`<li class="dropdown-item"><button id="all" onclick="botwRepository.categoryFilter('all')" class="filter-button btn">All Categories</button></li>`)
+        categories.forEach(category => (
+            $('#category-dropdown').append(`<li class="dropdown-item"><button id="${category}" onclick="botwRepository.categoryFilter('${category}')" class="filter-button btn">${category.charAt(0).toUpperCase() + category.slice(1)}</button></li>`
+            )
+        )) 
+    }
+
 
 
     return {
@@ -209,6 +246,8 @@ let botwRepository = (function () {
         loadList: loadList,
         showDetails: showDetails,
         categories: categories,
+        categoryFilter: categoryFilter,
+        loadCategories: loadCategories
     }
 })();
 
