@@ -167,16 +167,6 @@ faded gray:
    cursor: pointer;
  }
 
- /* #modal-container {
-  display: none;
- } */
-
- #modal-container.is-visible {
-  box-sizing: border-box;
-  background: rgba(0, 0, 0, 0.9);
-  text-align: center;
- }
-
  .modal-content {
   background-color: #0E101D;
   border: 1px solid #addce2;
@@ -189,17 +179,17 @@ faded gray:
  }
 
  .modal-header {
-  flex-direction: column;
   border-bottom: none;
-  align-items: center;
  }
 
+
  .modal-close {
-  color: #6bcad6;
+  color: #2bd0da;
   background: none;
   padding: 2px;
   border: none;
   text-shadow: 0 0 9px #26719B;
+  opacity: .8;
  }
 
  .modal-close:hover, .modal-close:focus {
@@ -207,12 +197,6 @@ faded gray:
   text-shadow: none;
   color: #26719B;
 }
-
-.hide-item {
-  display: none !important;
-}
-
-
 
 @media all and (max-width: 750px) {
   h1 {

@@ -101,7 +101,7 @@ let botwRepository = (function () {
 
             //create modal header
             let modalHeader = document.createElement('div');
-            modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center');
+            modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center', 'align-items-center', 'flex-column');
 
             // create modal close button
             let closeButton = document.createElement('button');
@@ -238,6 +238,7 @@ let botwRepository = (function () {
         })
     }
 
+    // create categories list in dropdown menu
     function loadCategories () {
         $('#category-dropdown').append(`<li class="dropdown-item"><button id="all" onclick="botwRepository.categoryFilter('all')" class="filter-button btn">All Categories</button></li>`)
         categories.forEach(category => (
@@ -245,7 +246,6 @@ let botwRepository = (function () {
             )
         )) 
     }
-
 
 
     return {
