@@ -3,6 +3,7 @@ let botwRepository = (function () {
     let apiUrl = 'https://botw-compendium.herokuapp.com/api/v2';
     let modalContainer = document.querySelector('#modal-container');
     const categories = [];
+
     // fetch entry array
     function getAll() {
         return hyruleCompendium;
@@ -30,10 +31,10 @@ let botwRepository = (function () {
 
         // create a button in each list that holds the image, title and id of the entry.
         let button = document.createElement('button');
-        button.innerHTML = `<img src=${entry.image}></img><p>${entry.id}</p class='text-center'><h2>${entry.name}</h2>`;
+        button.innerHTML = `<img data-toggle="modal" data-targe="#modal-container" src=${entry.image}></img><p>${entry.id}</p class='text-center'><h2>${entry.name}</h2>`;
         button.classList.add('btn','compendium-button', 'd-inline-block', 'text-center');
         button.setAttribute('data-toggle', 'modal');
-        button.setAttribute('data-target', '#modal-container')
+        button.setAttribute('data-target', '#modal-container');
         listItem.appendChild(button);
 
         compendiumList.appendChild(listItem);
@@ -87,20 +88,39 @@ let botwRepository = (function () {
     // list entry details
     function showDetails(entry) {
 
+        modalContainer.innerHTML= '';
+
             //create modal
             let modal = document.createElement('div');
-            modal.classList.add('custom-modal');
+            modal.classList.add('custom-modal', 'modal-dialog', 'modal-dialog-centered');
+            modal.setAttribute('role', 'document');
+
+            // create modal content
+            let modalContent = document.createElement('div');
+            modalContent.classList.add('modal-content', 'd-flex', 'justify-content-center', 'text-center');
+
+            //create modal header
+            let modalHeader = document.createElement('div');
+            modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center');
 
             // create modal close button
             let closeButton = document.createElement('button');
-            closeButton.classList.add('modal-close')
+            closeButton.classList.add('modal-close', 'close');
+            closeButton.setAttribute('data-dismiss', 'modal');
+            closeButton.setAttribute('aria-label', 'close');
             closeButton.innerText = 'X';
-            closeButton.addEventListener('click', hideModal);
+            // closeButton.addEventListener('click', clearModal);
 
             // create modal title
             let entryTitle = document.createElement('h1');
+            entryTitle.classList.add('modal-title');
+            entryTitle.setAttribute('id', 'modalContainerTitle');
             let entryName = entry.name.toUpperCase();
             entryTitle.innerText = entry.id + '.' + ' ' + entryName;
+
+            //create modalbody 
+            let modalBody = document.createElement('div');
+            modalBody.classList.add('modal-body');
 
             // add entry image to modal
             let entryImage = document.createElement('img');
@@ -122,43 +142,24 @@ let botwRepository = (function () {
             }
             entryLocations.innerHTML = `<h3>Common Locations</h3><p class="text-center">${locations}</p>`;
 
-            //add other details that only appear on certain entries
 
             // append all that stuff
-            modal.appendChild(closeButton);
-            modal.appendChild(entryTitle);
-            modal.appendChild(entryImage);
-            modal.appendChild(entryDescription);
-            modal.appendChild(entryLocations);
+            modalHeader.appendChild(closeButton);
+            modalHeader.appendChild(entryTitle);
+            modalBody.appendChild(entryImage);
+            modalBody.appendChild(entryDescription);
+            modalBody.appendChild(entryLocations);
+            modalContent.appendChild(modalHeader);
+            modalContent.appendChild(modalBody);
+            modal.appendChild(modalContent);
             modalContainer.appendChild(modal);
 
-            // make the modal visible
-            modalContainer.classList.add('is-visible');
-    }
-
-    // close modal when modalContainer is targeted
-    modalContainer.addEventListener('click', (e) => {
-        let target = e.target;
-        if (target === modalContainer) {
-            hideModal();
-        }
-    });
-
-    function hideModal() {
-        modalContainer.classList.remove('is-visible');
-        modalContainer.innerHTML = '';
     }
 
     // triggers showDetails on click
     function clickEvent(button, entry) {
         button.addEventListener('click', function () { showDetails(entry) });
     }
-
-    window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-            hideModal();
-        }
-    });
 
     // Search compendium by item name or ID
     let searchValue = document.getElementById('searchBar');
