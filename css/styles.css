@@ -16,14 +16,12 @@ faded gray:
  }
 
  body {
-    /* min-height: 100%; */
     background-image: linear-gradient(to bottom, #15294a, #152441, #142039, #131b30, #111728, #111728, #111728, #111728, #131b30, #142039, #152441, #15294a);
     color: #addce2;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 0.7px;
     height: auto;
     background-attachment: fixed;
-
  }
 
  .navbar {
@@ -61,12 +59,6 @@ faded gray:
    min-height: calc(100vh - 8rem);
  }
 
-
- .search-container {
-  display: flex;
-  justify-content: flex-end;
- }
-
  .search-bar {
   background: none;
   border: none;
@@ -102,6 +94,8 @@ faded gray:
  .dropdown-menu {
   background-color: #0E101D;
   border: 1px solid #addce2;
+  top: 150%;
+  left: 2%;
  }
 
  .dropdown-item {
