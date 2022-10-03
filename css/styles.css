@@ -45,6 +45,11 @@ faded gray:
     width: 134px;
  }
 
+ h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+ }
+
  footer {
    box-shadow: 0 -12px 9px rgb(38 113 155 / 50%);
  }
@@ -88,7 +93,6 @@ faded gray:
  .icons:hover, .icons:focus, .icons:active {
   cursor: pointer;
   filter: drop-shadow(0 0 2px #2EFFFA);
-
  }
 
  .dropdown-menu {
@@ -100,7 +104,6 @@ faded gray:
 
  .dropdown-item {
   background: none;
-
  }
 
  .dropdown-item:focus, .dropdown-item:hover, .dropdown-item:active {
@@ -109,25 +112,14 @@ faded gray:
 
  .compendium {
    margin: 5rem auto;
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-around;
-   align-items: center;
    max-width: 80%;
  }
 
  .compendium-list {
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   justify-content: center;
    margin: 15px;
  }
 
  .compendium-list li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 140px;
   width: 140px;
   border: 1px solid #addce2;
@@ -136,11 +128,9 @@ faded gray:
 }
 
  .compendium-button {
-   display: inline-block;
    background: none;
    width: 135px;
    height: 135px;
-   text-align: center;
    padding: 3px;
    color: inherit;
    font-family: inherit;
@@ -159,7 +149,6 @@ faded gray:
    background-color: #15294A;
    border-radius: 10px;
    width: 30px;
-   text-align: center;
    position: absolute;
    bottom: -10px;
    left: 6px;
@@ -191,7 +180,7 @@ faded gray:
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
-  z-index: 999; 
+  z-index: 9999; 
   overflow: auto; 
   display: grid;
   text-align: center;
@@ -201,7 +190,7 @@ faded gray:
  .custom-modal {
   margin: auto;
   display: inline-block;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   background: #0E101D;
   border: 1px solid #addce2;
   padding: 10px;
