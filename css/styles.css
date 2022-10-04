@@ -110,6 +110,10 @@ faded gray:
   background: none;
  }
 
+ .hide-item {
+  display: none !important;
+}
+
  .compendium {
    margin: 5rem auto;
    max-width: 80%;
@@ -196,6 +200,12 @@ faded gray:
   cursor: pointer;
   text-shadow: none;
   color: #26719B;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  position: absolute;
+  height: 50px;
+  top: 50%;
 }
 
 @media all and (max-width: 750px) {

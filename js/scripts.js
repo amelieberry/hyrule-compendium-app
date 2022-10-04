@@ -85,7 +85,7 @@ let botwRepository = (function () {
         });
     }
 
-    // list entry details
+    // Create a modal that lists entry details 
     function showDetails(entry) {
 
         modalContainer.innerHTML= '';
@@ -99,6 +99,18 @@ let botwRepository = (function () {
             let modalContent = document.createElement('div');
             modalContent.classList.add('modal-content', 'd-flex', 'justify-content-center', 'text-center');
 
+            // create carousel
+            let modalCarousel = document.createElement('div');
+            modalCarousel.classList.add('carousel');
+            modalCarousel.setAttribute('data-ride', 'carousel');
+            modalCarousel.setAttribute('id', 'modal-carousel');
+
+            let modalCarouselInner = document.createElement('div');
+            modalCarouselInner.classList.add('carousel-inner');
+
+            let modalCarouselItem = document.createElement('div');
+            modalCarouselItem.classList.add('carousel-item', 'active');
+
             //create modal header
             let modalHeader = document.createElement('div');
             modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center', 'align-items-center', 'flex-column');
@@ -109,7 +121,6 @@ let botwRepository = (function () {
             closeButton.setAttribute('data-dismiss', 'modal');
             closeButton.setAttribute('aria-label', 'close');
             closeButton.innerText = 'X';
-            // closeButton.addEventListener('click', clearModal);
 
             // create modal title
             let entryTitle = document.createElement('h1');
@@ -142,6 +153,15 @@ let botwRepository = (function () {
             }
             entryLocations.innerHTML = `<h3>Common Locations</h3><p class="text-center">${locations}</p>`;
 
+            modalCarouselInner.innerHTML = `<a class="carousel-control-prev" href="#modal-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#modal-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>`;
+
 
             // append all that stuff
             modalHeader.appendChild(closeButton);
@@ -149,10 +169,14 @@ let botwRepository = (function () {
             modalBody.appendChild(entryImage);
             modalBody.appendChild(entryDescription);
             modalBody.appendChild(entryLocations);
-            modalContent.appendChild(modalHeader);
-            modalContent.appendChild(modalBody);
+            modalCarouselItem.appendChild(modalHeader);
+            modalCarouselItem.appendChild(modalBody);
+            modalCarouselInner.appendChild(modalCarouselItem);
+            modalCarousel.appendChild(modalCarouselInner);
+            modalContent.appendChild(modalCarousel);
             modal.appendChild(modalContent);
             modalContainer.appendChild(modal);
+
 
     }
 
@@ -209,6 +233,7 @@ let botwRepository = (function () {
         $('.dropdown-menu').toggleClass('show');
       });
 
+    // show filtered items and hide the rest
     function categoryFilter (category) {
         let showFiltered = [];
         let hideUnfiltered = [];
