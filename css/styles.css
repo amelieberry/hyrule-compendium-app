@@ -194,6 +194,7 @@ faded gray:
   border: none;
   text-shadow: 0 0 9px #26719B;
   opacity: .8;
+  z-index: 2;
  }
 
  .modal-close:hover, .modal-close:focus {
@@ -203,9 +204,8 @@ faded gray:
 }
 
 .carousel-control-next, .carousel-control-prev {
-  position: absolute;
-  height: 50px;
-  top: 50%;
+  bottom: 100%;
+  top: 250px;
 }
 
 @media all and (max-width: 750px) {
@@ -221,15 +221,13 @@ faded gray:
    .compendium {
       min-width: 100%;
    }
-   .custom-modal {
-    max-width: 300px;
-   }
    .modal-image {
     height: 200px;
     width: 200px;
    }
-   .banner {
-    flex-wrap: column;
+   .carousel-control-next, .carousel-control-prev {
+    top: 195px;
    }
+
 }
 
