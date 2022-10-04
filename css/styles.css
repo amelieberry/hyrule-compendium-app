@@ -4,7 +4,6 @@ background black: #0E101D
 background blue: #15294A
 highlight blue: #2EFFFA
 faded blue: #26719B
-faded gray: 
  */
  * {
     margin: 0; 
@@ -118,7 +117,8 @@ faded gray:
 }
 
  .compendium {
-   margin: 6rem auto;
+   margin: 0 auto;
+   padding: 6rem 0;
    max-width: 80%;
  }
 
