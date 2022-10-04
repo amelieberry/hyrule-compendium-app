@@ -1,7 +1,6 @@
 let botwRepository = (function () {
     let hyruleCompendium = [];
     let apiUrl = 'https://botw-compendium.herokuapp.com/api/v2';
-    let modalContainer = document.querySelector('#modal-container');
     const categories = [];
 
     // fetch entry array
@@ -26,13 +25,13 @@ let botwRepository = (function () {
         //create lists of each entry
         let compendiumList = document.querySelector('.compendium-list');
         let listItem = document.createElement('li');
-        listItem.classList.add('group-list-item','d-flex', 'align-items-center', 'justify-content-center')
+        listItem.classList.add('group-list-item', 'd-flex', 'align-items-center', 'justify-content-center')
         listItem.id = entry.id;
 
         // create a button in each list that holds the image, title and id of the entry.
         let button = document.createElement('button');
         button.innerHTML = `<img data-toggle="modal" data-targe="#modal-container" src=${entry.image}></img><p>${entry.id}</p class='text-center'><h2>${entry.name}</h2>`;
-        button.classList.add('btn','compendium-button', 'd-inline-block', 'text-center');
+        button.classList.add('btn', 'compendium-button', 'd-inline-block', 'text-center');
         button.setAttribute('data-toggle', 'modal');
         button.setAttribute('data-target', '#modal-container');
         listItem.appendChild(button);
@@ -40,6 +39,64 @@ let botwRepository = (function () {
         compendiumList.appendChild(listItem);
 
         clickEvent(button, entry);
+
+        // create carousel item
+        let modalCarouselItem = document.createElement('div');
+        modalCarouselItem.classList.add('carousel-item');
+        modalCarouselItem.id = `carousel-${entry.id}`;
+
+        // create modal header
+        let modalHeader = document.createElement('div');
+        modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center', 'align-items-center', 'flex-column');
+
+        // create modal close button
+        let closeButton = document.createElement('button');
+        closeButton.classList.add('modal-close', 'close');
+        closeButton.setAttribute('data-dismiss', 'modal');
+        closeButton.setAttribute('aria-label', 'close');
+        closeButton.innerText = 'X';
+
+        // create modal title
+        let entryTitle = document.createElement('h1');
+        entryTitle.classList.add('modal-title');
+        entryTitle.setAttribute('id', 'modalContainerTitle');
+        let entryName = entry.name.toUpperCase();
+        entryTitle.innerText = entry.id + '.' + ' ' + entryName;
+
+        //create modalbody 
+        let modalBody = document.createElement('div');
+        modalBody.classList.add('modal-body');
+
+        // add entry image to modal
+        let entryImage = document.createElement('img');
+        entryImage.classList.add('modal-image');
+        entryImage.alt = `An image of ${entry.name}`;
+        entryImage.src = entry.image;
+
+        // add Description of selected entry
+        let entryDescription = document.createElement('div');
+        entryDescription.innerHTML = `<h3>Description</h3><p class="text-center">${entry.description}</p>`;
+
+        // add common locations
+        let entryLocations = document.createElement('div');
+        let locations = ''
+        if (entry.common_locations === null) {
+            locations = "Unknown";
+        } else {
+            locations = entry.common_locations.join(', ');
+        }
+        entryLocations.innerHTML = `<h3>Common Locations</h3><p class="text-center">${locations}</p>`;
+
+         // append all that stuff
+        modalHeader.appendChild(closeButton);
+        modalHeader.appendChild(entryTitle);
+        modalBody.appendChild(entryImage);
+        modalBody.appendChild(entryDescription);
+        modalBody.appendChild(entryLocations);
+        modalCarouselItem.appendChild(modalHeader);
+        modalCarouselItem.appendChild(modalBody);
+
+        $('.carousel-inner').append(modalCarouselItem);
     }
 
     // create and append loading message
@@ -85,99 +142,10 @@ let botwRepository = (function () {
         });
     }
 
-    // Create a modal that lists entry details 
+    // add class active to active modal 
     function showDetails(entry) {
-
-        modalContainer.innerHTML= '';
-
-            //create modal
-            let modal = document.createElement('div');
-            modal.classList.add('custom-modal', 'modal-dialog', 'modal-dialog-centered');
-            modal.setAttribute('role', 'document');
-
-            // create modal content
-            let modalContent = document.createElement('div');
-            modalContent.classList.add('modal-content', 'd-flex', 'justify-content-center', 'text-center');
-
-            // create carousel
-            let modalCarousel = document.createElement('div');
-            modalCarousel.classList.add('carousel');
-            modalCarousel.setAttribute('data-ride', 'carousel');
-            modalCarousel.setAttribute('id', 'modal-carousel');
-
-            let modalCarouselInner = document.createElement('div');
-            modalCarouselInner.classList.add('carousel-inner');
-
-            let modalCarouselItem = document.createElement('div');
-            modalCarouselItem.classList.add('carousel-item', 'active');
-
-            //create modal header
-            let modalHeader = document.createElement('div');
-            modalHeader.classList.add('modal-header', 'text-center', 'justify-content-center', 'align-items-center', 'flex-column');
-
-            // create modal close button
-            let closeButton = document.createElement('button');
-            closeButton.classList.add('modal-close', 'close');
-            closeButton.setAttribute('data-dismiss', 'modal');
-            closeButton.setAttribute('aria-label', 'close');
-            closeButton.innerText = 'X';
-
-            // create modal title
-            let entryTitle = document.createElement('h1');
-            entryTitle.classList.add('modal-title');
-            entryTitle.setAttribute('id', 'modalContainerTitle');
-            let entryName = entry.name.toUpperCase();
-            entryTitle.innerText = entry.id + '.' + ' ' + entryName;
-
-            //create modalbody 
-            let modalBody = document.createElement('div');
-            modalBody.classList.add('modal-body');
-
-            // add entry image to modal
-            let entryImage = document.createElement('img');
-            entryImage.classList.add('modal-image');
-            entryImage.alt = `An image of ${entry.name}`;
-            entryImage.src = entry.image;
-
-            // add Description of selected entry
-            let entryDescription = document.createElement('div');
-            entryDescription.innerHTML = `<h3>Description</h3><p class="text-center">${entry.description}</p>`;
-
-            // add common locations
-            let entryLocations = document.createElement('div');
-            let locations = ''
-            if (entry.common_locations === null) {
-                locations = "Unknown";
-            } else {
-                locations = entry.common_locations.join(', ');
-            }
-            entryLocations.innerHTML = `<h3>Common Locations</h3><p class="text-center">${locations}</p>`;
-
-            modalCarouselInner.innerHTML = `<a class="carousel-control-prev" href="#modal-carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#modal-carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>`;
-
-
-            // append all that stuff
-            modalHeader.appendChild(closeButton);
-            modalHeader.appendChild(entryTitle);
-            modalBody.appendChild(entryImage);
-            modalBody.appendChild(entryDescription);
-            modalBody.appendChild(entryLocations);
-            modalCarouselItem.appendChild(modalHeader);
-            modalCarouselItem.appendChild(modalBody);
-            modalCarouselInner.appendChild(modalCarouselItem);
-            modalCarousel.appendChild(modalCarouselInner);
-            modalContent.appendChild(modalCarousel);
-            modal.appendChild(modalContent);
-            modalContainer.appendChild(modal);
-
-
+        $('.active').removeClass('active');
+        $(`#carousel-${entry.id}`).addClass('active');
     }
 
     // triggers showDetails on click
@@ -220,21 +188,21 @@ let botwRepository = (function () {
     //toggle search bar by pressing the search icon. Hide title if small screen
     let searchButton = $('.search-button');
     let pageTitle = $('.page-title');
-    $(document).ready(function(){
-        $(searchButton).click(function() {
+    $(document).ready(function () {
+        $(searchButton).click(function () {
             pageTitle.toggleClass('d-none d-md-block');
             $('.search-bar').toggleClass('d-none');
-            
+
         });
-      });
+    });
 
     // Toggle categories menu by pressing on filter icon
-    $('.dropdown').click(function(){
+    $('.dropdown').click(function () {
         $('.dropdown-menu').toggleClass('show');
-      });
+    });
 
     // show filtered items and hide the rest
-    function categoryFilter (category) {
+    function categoryFilter(category) {
         let showFiltered = [];
         let hideUnfiltered = [];
         if (category === 'all') {
@@ -246,7 +214,7 @@ let botwRepository = (function () {
                     return item
                 }
             });
-    
+
             showFiltered = hyruleCompendium.filter(function (item) {
                 // FIND ALL THE ITEMS THAT CONTAIN SEARCH KEY 
                 if (item.category === category) {
@@ -264,12 +232,12 @@ let botwRepository = (function () {
     }
 
     // create categories list in dropdown menu
-    function loadCategories () {
+    function loadCategories() {
         $('#category-dropdown').append(`<li class="dropdown-item"><button id="all" onclick="botwRepository.categoryFilter('all')" class="filter-button btn">All Categories</button></li>`)
         categories.forEach(category => (
             $('#category-dropdown').append(`<li class="dropdown-item"><button id="${category}" onclick="botwRepository.categoryFilter('${category}')" class="filter-button btn">${category.charAt(0).toUpperCase() + category.slice(1)}</button></li>`
             )
-        )) 
+        ))
     }
 
 
@@ -290,6 +258,7 @@ botwRepository.loadList().then(function () {
     botwRepository.getAll().forEach(function (entry) {
         botwRepository.addListItem(entry);
     });
+
 });
 
 
