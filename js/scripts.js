@@ -30,7 +30,7 @@ let botwRepository = (function () {
 
         // create a button in each list that holds the image, title and id of the entry.
         let button = document.createElement('button');
-        button.innerHTML = `<img data-toggle="modal" data-targe="#modal-container" src=${entry.image}></img><p>${entry.id}</p class='text-center'><h2>${entry.name}</h2>`;
+        button.innerHTML = `<img class="loading" data-toggle="modal" data-targe="#modal-container" src=${entry.image}></img><p>${entry.id}</p class='text-center'><h2>${entry.name}</h2>`;
         button.classList.add('btn', 'compendium-button', 'd-inline-block', 'text-center');
         button.setAttribute('data-toggle', 'modal');
         button.setAttribute('data-target', '#modal-container');

@@ -74,6 +74,9 @@ faded gray:
   outline: none;
  }
 
+  img.loading {
+    background: transparent url(../assets/loading.png) no-repeat scroll center center;
+  }
  .btn {
   padding: .2rem;
   color: #addce2;
