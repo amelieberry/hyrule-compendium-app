@@ -21,4 +21,4 @@ To filter the list by Category, users can click on the filter icon on the left o
 * jQuery
 
 ## Live Demo
-https://amelieberry.github.io/simple-js-app/
+https://amelieberry.github.io/hyrule-compendium-app/
