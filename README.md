@@ -6,6 +6,9 @@ This Hyrule Compendium app, on the other hand, uses HTML, CSS and JavaScript to 
 ## Styling
 The app’s design was inspired by the Compendium in-game. The similar colors and layout provide a familiar feel that will allow users to browse through the app without breaking their in-game immersion. 
 
+## App Screenshot
+![A screenshot of the home page displaying all Compendium items](/assets/hyrule-compendium.JPG)
+
 ## Navigation
 Users can scroll through the list of entries and click on each of them to display a modal with further information. Sliders have been added using Bootstrap to allow sliding between modals. Each item on the list is sorted by their in-game ID as they are in the Sheikah Slate’s Compendium to make finding specific items easier.
 
